@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-climate-bg {
+	background: #020617;
+}
+
+.hero-bg-winter {
+	background:
+		radial-gradient(130% 95% at 50% 15%, rgba(56, 189, 248, 0.22) 0%, rgba(15, 23, 42, 0.08) 60%, rgba(2, 6, 23, 0.92) 100%),
+		linear-gradient(180deg, rgba(15, 23, 42, 0.94) 0%, rgba(2, 6, 23, 0.98) 70%);
+	animation: winterCycle 14s ease-in-out infinite;
+}
+
+.hero-bg-sunny {
+	background:
+    radial-gradient(80% 60% at 72% 5%, rgba(255, 255, 255, 0.72) 0%, rgba(255, 220, 140, 0.28) 28%, rgba(255, 220, 140, 0) 55%),
+}
+
+.hero-sun {
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 240, 180, 0.7) 25%, rgba(255, 200, 80, 0.25) 55%, transparent 72%);
+  filter: blur(1px);
+}
+
+.hero-snowflake {
+	top: -6%;
+	border-radius: 9999px;
+	background: rgba(186, 230, 253, 0.85);
+	box-shadow: 0 0 8px rgba(186, 230, 253, 0.55);
+	animation-name: snowfall, snowVisibility;
+	animation-duration: var(--fall-duration), 14s;
+	animation-delay: var(--fall-delay), 0s;
+	animation-iteration-count: infinite, infinite;
+	animation-timing-function: linear, ease-in-out;
+}
+
+@keyframes snowfall {
+	0% {
+		transform: translate3d(0, -10vh, 0);
+	}
+	100% {
+		transform: translate3d(var(--fall-drift), 115vh, 0);
+	}
+}
+
+@keyframes winterCycle {
+	0%, 35% {
+		opacity: 1;
+		transform: scale(1.04);
+	}
+	50%, 100% {
+		opacity: 0;
+		transform: scale(1);
+	}
+}
+
+@keyframes sunnyCycle {
+	0%, 35% {
+		opacity: 0;
+		transform: scale(1);
+	}
+	50%, 85% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+	100% {
+		opacity: 0;
+		transform: scale(1.02);
+	}
+}
+
+@keyframes snowVisibility {
+	0%, 35% {
+		opacity: 1;
+	}
+	50%, 100% {
+		opacity: 0.08;
+	}
+}
+
+@keyframes sunCycle {
+	0%, 35% {
+		opacity: 0.05;
+		transform: scale(0.8);
+	}
+	50%, 85% {
+		opacity: 0.75;
+		transform: scale(1.08);
+	}
+	100% {
+		opacity: 0.08;
+		transform: scale(0.9);
+	}
+}
+
+@media print {
+	html,
+	body {
+		background: #fff !important;
+	}
+
+	body * {
+		visibility: hidden;
+	}
+
+	.print-overlay {
+		position: static !important;
+		inset: auto !important;
+		overflow: visible !important;
+		padding: 0 !important;
+		background: #fff !important;
+		backdrop-filter: none !important;
+	}
+
+	.print-container {
+		max-width: none !important;
+		margin: 0 !important;
+	}
+
+	.quote-print-root,
+	.quote-print-root * {
+		visibility: visible;
+	}
+
+	.quote-print-root {
+		position: static !important;
+		width: 100%;
+		margin: 0;
+		padding: 10mm;
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	.quote-print-root .overflow-x-auto {
+		overflow: visible !important;
+	}
+
+	.quote-print-root table {
+		width: 100% !important;
+		border-collapse: collapse;
+	}
+
+	.quote-print-root tr,
+	.quote-print-root section,
+	.quote-print-root .rounded-xl {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.quote-print-root input,
+	.quote-print-root textarea {
+		border: 0 !important;
+		padding: 0 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		font-size: 12px !important;
+	}
+
+	.quote-print-root textarea {
+		min-height: auto !important;
+		overflow: visible !important;
+		resize: none !important;
+	}
+
+	.no-print {
+		display: none !important;
+	}
+}
